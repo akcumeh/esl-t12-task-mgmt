@@ -1,0 +1,55 @@
+<div class="add-task-container">
+    <mat-card class="task-form-card">
+        <mat-card-header>
+            <mat-card-title>Add New Task</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Task Title</mat-label>
+                    <input matInput formControlName="title" placeholder="Enter task title">
+                    @if (taskForm.get('title')?.hasError('required') && taskForm.get('title')?.touched) {
+                    <mat-error>Task title is required</mat-error>
+                    }
+                    @if (getTitleWordCount() > 3 && getTitleWordCount() <= 5) {
+                       <mat-hint class="tip-text">Tip: keep the task title shorter than 5 words</mat-hint>
+                        }
+                        @if (taskForm.get('title')?.hasError('maxWords')) {
+                        <mat-error>Task title should be 5 words or less</mat-error>
+                        }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Task Description</mat-label>
+                    <textarea matInput
+                              formControlName="description"
+                              placeholder="Enter task description"
+                              rows="4">
+          </textarea>
+                    @if (taskForm.get('description')?.hasError('required') && taskForm.get('description')?.touched) {
+                    <mat-error>Task description is required</mat-error>
+                    }
+                    @if (taskForm.get('description')?.hasError('maxWords')) {
+                    <mat-error class="error-text">Task description should be 15 words or less</mat-error>
+                    }
+                    <mat-hint>{{ getDescriptionWordCount() }}/15 words</mat-hint>
+                </mat-form-field>
+
+                <mat-checkbox formControlName="isStarted" class="started-checkbox">
+                    Has this task been started?
+                </mat-checkbox>
+
+                <div class="form-actions">
+                    <button mat-button type="button" (click)="goBack()">Cancel</button>
+                    <button mat-raised-button
+                            color="primary"
+                            type="submit"
+                            [disabled]="!taskForm.valid">
+                        Add Task
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
