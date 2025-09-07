@@ -1,20 +1,37 @@
 .add-task-container {
-    padding: 20px;
+    padding: 1.5rem;
     background-color: #f5edf7;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .task-form-card {
     width: 100%;
     max-width: 500px;
+    max-height: 90vh;
     background: white;
+    overflow-y: auto;
 
     mat-card-title {
         color: #3d1860;
         text-align: center;
+        margin-bottom: 24px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #bb99cd;
+        border-radius: 3px;
     }
 }
 
@@ -38,7 +55,14 @@
     }
 
     .mat-mdc-raised-button {
-        background-color: #643579 !important;
+        background-color: #bb99cd !important;
+        color: #3d1860 !important;
+
+        &:disabled {
+            background-color: #bb99cd !important;
+            opacity: 0.6;
+            color: #3d1860 !important;
+        }
     }
 }
 

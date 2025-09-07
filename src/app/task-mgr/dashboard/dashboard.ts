@@ -18,9 +18,19 @@ export class DashboardComponent {
     taskService = inject(TaskService);
     router = inject(Router);
 
+    expandedSections = {
+        new: true,
+        progress: true,
+        done: true
+    };
+
     newTasks = computed(() => this.taskService.getTasks().filter(task => task.status === 'new'));
     progressTasks = computed(() => this.taskService.getTasks().filter(task => task.status === 'progress'));
     doneTasks = computed(() => this.taskService.getTasks().filter(task => task.status === 'done'));
+
+    toggleSection(section: 'new' | 'progress' | 'done') {
+        this.expandedSections[section] = !this.expandedSections[section];
+    }
 
     navigateToAddTask() {
         this.router.navigate(['/add-task']);
@@ -33,8 +43,8 @@ export class DashboardComponent {
             const task = event.previousContainer.data[event.previousIndex];
             let newStatus: 'new' | 'progress' | 'done' = 'new';
 
-            if (event.container.id === 'progress-list') newStatus = 'progress';
-            if (event.container.id === 'done-list') newStatus = 'done';
+            if (event.container.id.includes('progress')) newStatus = 'progress';
+            if (event.container.id.includes('done')) newStatus = 'done';
 
             this.taskService.updateTaskStatus(task.id, newStatus);
         }
