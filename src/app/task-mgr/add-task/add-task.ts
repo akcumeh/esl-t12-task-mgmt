@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
-import { TaskService } from '../task-mgr/task.service';
+import { TaskService } from '../task.service';
 
 @Component({
     selector: 'app-add-task',
