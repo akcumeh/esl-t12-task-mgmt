@@ -1,0 +1,85 @@
+.dashboard-container {
+    padding: 20px;
+    background-color: #f5edf7;
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+
+    h1 {
+        color: #3d1860;
+        margin: 0;
+    }
+}
+
+.add-button {
+    background-color: #643579 !important;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.task-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.column {
+    h2 {
+        color: #3d1860;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+.task-card {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(61, 24, 96, 0.1);
+    cursor: grab;
+    border-left: 4px solid #643579;
+
+    &:active {
+        cursor: grabbing;
+    }
+
+    &.completed {
+        border-left-color: #bb99cd;
+        opacity: 0.8;
+    }
+}
+
+.task-content {
+    h3 {
+        color: #3d1860;
+        margin: 0 0 8px 0;
+        font-size: 16px;
+    }
+
+    p {
+        color: #643579;
+        margin: 0;
+        font-size: 14px;
+    }
+}
+
+.cdk-drop-list {
+    min-height: 200px;
+    border: 2px dashed transparent;
+
+    &.cdk-drop-list-dragging {
+        border-color: #bb99cd;
+    }
+}
